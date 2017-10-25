@@ -1,3 +1,22 @@
-<p>
-  home works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-9">
+      <div class="interpretations-columns">
+        <div class="interpretation-search">
+          <input type="text" class="form-control">
+        </div>
+        <div
+          class="card interpretation-card"
+          *ngFor="let interpretation of interpretations$ | async"
+        >
+          <app-interpretation-list
+            [interpretations]="[interpretation]"
+            [currentUser]="currentUser$ | async"
+            [rootUrl]="apiRootUrl$ | async"
+          >
+          </app-interpretation-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

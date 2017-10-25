@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {MenuModule} from './core/menu/menu.module';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app.routing';
 import {StoreModule} from '@ngrx/store';
@@ -15,6 +14,8 @@ import {CustomSerializer} from './utils/custom-route-serializer.util';
 import {HttpClientService} from './services/http-client.service';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { HomeComponent } from './pages/home/home.component';
+import {MenuModule} from './modules/menu/menu.module';
+import {InterpretationModule} from './modules/interpretation/interpretation.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HomeComponent } from './pages/home/home.component';
   imports: [
     BrowserModule,
     MenuModule,
+    InterpretationModule,
     /**
      * Module for http requests
      */

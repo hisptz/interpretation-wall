@@ -5,6 +5,7 @@ import {RouterReducerState} from '@ngrx/router-store';
 import * as fromSystemInfoReducer from './reducers/system-info.reducer';
 import * as fromNotificationReducer from './reducers/notification.reducer';
 import * as fromCurrentUserReducer from './reducers/current-user.reducer';
+import * as fromInterpretationReducer from './reducers/interpretation.reducer';
 import {storeFreeze} from 'ngrx-store-freeze';
 
 
@@ -16,13 +17,15 @@ export interface State {
   systemInfo: fromSystemInfoReducer.State;
   notification: fromNotificationReducer.State;
   currentUser: fromCurrentUserReducer.State;
+  interpretations: fromInterpretationReducer.State[];
 }
 
 export const reducers: ActionReducerMap<State> = {
   routes: fromRouterReducer.routerReducer,
   systemInfo: fromSystemInfoReducer.systemInfoReducer,
   notification: fromNotificationReducer.notificationReducer,
-  currentUser: fromCurrentUserReducer.currentUserReducer
+  currentUser: fromCurrentUserReducer.currentUserReducer,
+  interpretations: fromInterpretationReducer.interpretationReducer
 };
 
 
