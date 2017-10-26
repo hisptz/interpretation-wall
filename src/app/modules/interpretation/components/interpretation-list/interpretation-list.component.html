@@ -34,7 +34,14 @@
         <div
           class="interpretation-text"
           *ngIf="!interpretation.showEditForm && !interpretation.showDeleteDialog && !interpretation.deleting"
-        >{{interpretation.text}}</div>
+        >
+          {{interpretation.text | truncate: interpretation.maxLetters}}
+          <a
+              (click)="toggleMoreInterpretationText(interpretation, $event)"
+              *ngIf="interpretation.text.length > 100"
+              class="show-more-btn"
+          >{{interpretation.maxLetters > 0 ? 'more' : 'less'}}</a>
+        </div>
 
         <div
           class="interpretation-delete-block"

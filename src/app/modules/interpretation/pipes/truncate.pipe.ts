@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'truncate'
@@ -6,9 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TruncatePipe implements PipeTransform {
 
   transform(value: string, args: number): string {
-    let limit = args > 0 ? args : 100;
-    let trail = value.length > limit ? '...' : '';
 
-    return value.length > limit ? value.substring(0, limit) + trail: value;
+
+    const limit = args > 0 ? args : value.length;
+    const trail = value.length > limit ? '...' : '';
+
+    return value.length > limit ? value.substring(0, limit) + trail : value;
   }
 }

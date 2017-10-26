@@ -35,8 +35,8 @@ export class InterpretationEffect {
     return new Observable(observer => {
       this.httpClient.get(`${rootUrl}interpretations.json?fields=id,type,text,created,likes,likedBy[id,name],
       user[id,name,displayName],comments[id,created,lastUpdated,text,user[id,name,displayName]],eventReport
-      [id,name,relativePeriods],eventChart[id,name,relativePeriods],chart[id,name,relativePeriods],map[id,name,mapViews
-      [relativePeriods]],reportTable[id,name,relativePeriods]&paging=false`)
+      [*],eventChart[*],chart[*],map[id,name,mapViews
+      [*]],reportTable[*]&paging=false`)
         .subscribe((response: any) => {
           observer.next(response.interpretations);
           observer.complete();

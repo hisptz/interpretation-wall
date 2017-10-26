@@ -16,11 +16,13 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { HomeComponent } from './pages/home/home.component';
 import {MenuModule} from './modules/menu/menu.module';
 import {InterpretationModule} from './modules/interpretation/interpretation.module';
+import { VisualizationCardComponent } from './components/visualization-card/visualization-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    VisualizationCardComponent
   ],
   imports: [
     BrowserModule,

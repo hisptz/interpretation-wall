@@ -40,9 +40,9 @@ export class InterpretationListComponent implements OnInit {
       newInterpretation.showDropdownOptions = false;
     }
 
-    // if (!newInterpretation.showCommentBlock) {
-    //   newInterpretation.showCommentBlock = index === 0 ? true : false;
-    // }
+    if (!newInterpretation.maxLetters) {
+      newInterpretation.maxLetters = 100;
+    }
 
     if (!newInterpretation.showDeleteButton) {
       newInterpretation.showDeleteButton = newInterpretation.user.id === this.currentUser.id;
@@ -260,12 +260,28 @@ export class InterpretationListComponent implements OnInit {
 
         return newInterpretationObject;
       });
-    })
+    });
 
   }
 
   emitInterpretationUpdates() {
     this.onInterpretationUpdate.emit(this.interpretations);
+  }
+
+  toggleMoreInterpretationText(interpretation, e) {
+    e.stopPropagation();
+    this.interpretations = this.interpretations.map((interpretationObject) => {
+      const newInterpretationObject: any = {...interpretationObject};
+      if (interpretationObject.id === interpretation.id) {
+        if (newInterpretationObject.maxLetters === 100) {
+          newInterpretationObject.maxLetters = 0;
+        } else {
+          newInterpretationObject.maxLetters = 100;
+        }
+      }
+
+      return newInterpretationObject;
+    });
   }
 
 }

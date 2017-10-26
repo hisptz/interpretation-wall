@@ -13,6 +13,7 @@ import { EditInterpretationComponent } from './components/edit-interpretation/ed
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { DeleteCommentComponent } from './components/delete-comment/delete-comment.component';
 import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
+import {TruncatePipe} from './pipes/truncate.pipe';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { EditCommentComponent } from './components/edit-comment/edit-comment.com
     InterpretationListComponent,
     AutosizeDirective,
     FilterPipe,
+    TruncatePipe,
     AddInterpretationComponent,
     InterpretationCommentComponent,
     AbbreviatePipe,
