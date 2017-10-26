@@ -16,6 +16,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { HomeComponent } from './pages/home/home.component';
 import {MenuModule} from './modules/menu/menu.module';
 import {InterpretationModule} from './modules/interpretation/interpretation.module';
+import {TopInterpretstionsService} from "./services/top-interpretstions.service";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import {InterpretationModule} from './modules/interpretation/interpretation.modu
   ],
     providers: [
       { provide: RouterStateSerializer, useClass: CustomSerializer },
-      HttpClientService
+      HttpClientService, TopInterpretstionsService
     ],
   bootstrap: [AppComponent]
 })

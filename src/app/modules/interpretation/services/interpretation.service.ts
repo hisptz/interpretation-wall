@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClientService} from '../../../services/http-client.service';
+import {getApiRootUrl} from "../../../selectors/system-info.selector";
 
 @Injectable()
 export class InterpretationService {
@@ -94,5 +95,7 @@ export class InterpretationService {
       interpretation.type.toLowerCase() + '[id,name]';
     return this.httpClient.get(interpretationUrl);
   }
+
+
 
 }

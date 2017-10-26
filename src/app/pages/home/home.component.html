@@ -1,14 +1,63 @@
 <div class="container-fluid">
+
+
+
+<div class="row">
+
+  <div class="interpretation-search col-4">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+
+  <div style="margin-left: 200px">
+  <div class="dropdown">
+  <button class="btn btn-outline-secondary">Home</button>
+  </div>
+  <div class="dropdown">
+  <button class="btn btn-outline-secondary" >Top 5 interpretations</button>
+  <div class="dropdown-content">
+    <a *ngFor="let interpret of top5Interpretors.slice(0,5)" (click)="getSelectedInterpretation(interpret)">{{interpret.text}}</a>
+
+  </div>
+  </div>
+
+  <div class="dropdown">
+  <button class="btn btn-outline-secondary">Top 5 authors</button>
+  <div class="dropdown-content">
+    <a *ngFor="let author of top5Authors.slice(0,5)" (click)="getSelectedAuthor(author)">{{author.name}}</a>
+
+  </div>
+  </div>
+
+  <div class="dropdown">
+  <button class="btn btn-outline-secondary dropdown">Top 5 commentators</button>
+  <div class="dropdown-content">
+    <a *ngFor="let commenntor of top5Commentors.slice(0,5)" (click)="getSelectedCommentor(commenntor)">{{commenntor.name}}</a>
+
+  </div>
+  </div>
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
   <div class="row">
-    <div class="col-9">
+    <div class="col">
       <div class="interpretations-columns">
-        <div class="interpretation-search">
-          <input type="text" class="form-control">
-        </div>
+        <!--<div class="interpretation-search">-->
+          <!--<input type="text" class="form-control">-->
+        <!--</div>-->
         <div
           class="card interpretation-card"
           *ngFor="let interpretation of interpretations$ | async"
         >
+          <div style="background-color: #eeeeee; height: 320px"></div>
           <app-interpretation-list
             [interpretations]="[interpretation]"
             [currentUser]="currentUser$ | async"
