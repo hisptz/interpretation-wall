@@ -82,6 +82,9 @@ export class HomeComponent implements OnInit {
 }
 
 
+  homeButtonClicked(){
+    window.location.href='./index.html'
+  }
 
   getSelectedInterpretation(interpretation){
 
@@ -101,6 +104,8 @@ export class HomeComponent implements OnInit {
       console.log("the comment details are :"+JSON.stringify(response))
     });
   }
+
+
 
 
 
