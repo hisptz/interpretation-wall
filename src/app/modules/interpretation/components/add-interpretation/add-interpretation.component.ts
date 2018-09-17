@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl} from '@angular/forms';
 import {InterpretationService} from '../../services/interpretation.service';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-add-interpretation',
@@ -32,7 +31,6 @@ export class AddInterpretationComponent implements OnInit {
     }
   }
 
-
   postInterpretation(e) {
     e.stopPropagation();
     this.creating = true;
@@ -52,5 +50,5 @@ export class AddInterpretationComponent implements OnInit {
      }
     this.interpretation.message = '';
   }
-}
 
+}

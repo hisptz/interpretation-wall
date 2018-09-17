@@ -1,4 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { State } from '../../../../store/reducers'
+import { User } from '../../../../models/users.model';
+import { getAllUsers } from '../../../../store/selectors/users.selector';
+
 import {InterpretationService} from '../../services/interpretation.service';
 import * as moment from 'moment';
 
@@ -8,7 +15,6 @@ import * as moment from 'moment';
   styleUrls: ['./interpretation-comment.component.css']
 })
 export class InterpretationCommentComponent implements OnInit {
-
   @Input() showCommentInput: boolean;
   @Input() comment: any;
   @Input() interpretation: any;
@@ -17,12 +23,14 @@ export class InterpretationCommentComponent implements OnInit {
   @Output() onCommentDelete: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCommentCreated: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCommentUpdated: EventEmitter<any> = new EventEmitter<any>();
-  constructor(private interpretationService: InterpretationService) {
+
+  users$: Observable<User[]>;
+  constructor(private interpretationService: InterpretationService,  private store : Store<State>) {
+    this.users$ = this.store.select(getAllUsers);
     this.showCommentInput = false;
   }
 
   ngOnInit() {
-
     if (this.comment) {
       this.comment = {
         ...this.comment,
@@ -32,8 +40,6 @@ export class InterpretationCommentComponent implements OnInit {
         lastUpdated: moment(this.comment.lastUpdated, 'YYYY-MM-DD HH:mm Z').fromNow()
       };
     }
-
-
   }
 
   toggleCommentOptions(e, mouseEnter:boolean = false) {

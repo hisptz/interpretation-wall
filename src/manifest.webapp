@@ -1,21 +1,28 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.3",
     "name": "Interpretation wall",
-    "description": "Interpretation wall",
-    "launch_path": "index.html",
+    "description": "Interpretations",
+    "launch_path": "/index.html",
+    "appType": "APP",
     "icons": {
-        "16": "assets/img/icon-16x16.png",
-        "48": "assets/img/icon-48x48.png",
-        "128": "assets/img/icon-128x128.png"
+        "16": "interpretation.png",
+        "48": "interpretation.png",
+        "128": "interpretation.png"
     },
-    "developer": {
+    "developer": { 
         "name": "HISPTZ",
         "url": "https://hisptanzania.org"
     },
     "default_locale": "en",
     "activities": {
         "dhis": {
-            "href": "../../../"
+            "href" : "../../../"
         }
-    }
+    },
+    "authorities": [
+        "MY_APP_ADD_NEW",
+        "MY_APP_UPDATE",
+        "MY_APP_DELETE"
+	]
+
 }

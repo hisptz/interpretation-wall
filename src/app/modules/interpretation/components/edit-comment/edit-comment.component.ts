@@ -7,7 +7,6 @@ import {InterpretationService} from '../../services/interpretation.service';
   styleUrls: ['./edit-comment.component.css']
 })
 export class EditCommentComponent implements OnInit {
-
   @Input() rootUrl: string;
   @Input() comment: any;
   @Input() interpretation: any;
@@ -17,9 +16,9 @@ export class EditCommentComponent implements OnInit {
   creating: boolean;
   constructor(private interpretationService: InterpretationService) { }
 
+
   ngOnInit() {
   }
-
   cancel(e) {
     e.stopPropagation();
     this.onCommentEditCancel.emit(true)
@@ -35,4 +34,5 @@ export class EditCommentComponent implements OnInit {
     ).subscribe((interpretation) => this.onCommentEdit.emit(interpretation),
       () => this.onCommentEditFail.emit(true));
   }
+
 }

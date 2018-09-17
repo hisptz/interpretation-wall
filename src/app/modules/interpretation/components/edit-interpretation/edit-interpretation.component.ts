@@ -7,7 +7,6 @@ import {InterpretationService} from '../../services/interpretation.service';
   styleUrls: ['./edit-interpretation.component.css']
 })
 export class EditInterpretationComponent implements OnInit {
-
   @Input() rootUrl: string;
   @Output() onInterpretationEdit: EventEmitter<any> = new EventEmitter<any>();
   @Input() interpretation: any;
@@ -15,6 +14,7 @@ export class EditInterpretationComponent implements OnInit {
   constructor(private interpretationService: InterpretationService) {
     this.creating = false;
   }
+
 
   ngOnInit() {
   }

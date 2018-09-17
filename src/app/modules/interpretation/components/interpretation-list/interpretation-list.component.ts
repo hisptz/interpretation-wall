@@ -9,7 +9,6 @@ import {InterpretationService} from '../../services/interpretation.service';
   styleUrls: ['./interpretation-list.component.css']
 })
 export class InterpretationListComponent implements OnInit {
-
   @Input() interpretations: any[];
   @Input() rootUrl: string;
   @Input() itemHeight: string;
@@ -17,11 +16,13 @@ export class InterpretationListComponent implements OnInit {
   @Output() onInterpretationUpdate: EventEmitter<any> = new EventEmitter<any>();
   @Input() visualizationTypeObject: any;
   interpretationTerm: string;
-  constructor(private interpretationService: InterpretationService) { }
+  
+
+  constructor(private interpretationService: InterpretationService) {
+   }
 
   ngOnInit() {
     if (this.interpretations) {
-
       this.interpretations = this.interpretations.map((interpretation: any, index: number) => this._sanitizeInterpretation(interpretation, index));
     }
   }
@@ -283,5 +284,6 @@ export class InterpretationListComponent implements OnInit {
       return newInterpretationObject;
     });
   }
+
 
 }

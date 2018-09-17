@@ -8,7 +8,6 @@ import * as _ from 'lodash';
   styleUrls: ['./interpretation-like.component.css']
 })
 export class InterpretationLikeComponent implements OnInit {
-
   @Input() interpretation: any;
   @Input() rootUrl: string;
   @Input() currentUser: any;
@@ -70,6 +69,5 @@ export class InterpretationLikeComponent implements OnInit {
       });
 
   }
-
 
 }

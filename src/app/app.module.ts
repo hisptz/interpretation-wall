@@ -1,67 +1,84 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule }from '@angular/platform-browser'; 
+import {NgModule }from '@angular/core'; 
+import {FormsModule }from '@angular/forms'
+import {HttpClientModule }from '@angular/common/http'; 
+import { NgxDhis2MenuModule } from '@hisptz/ngx-dhis2-menu';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
-import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from './app.routing';
-import {StoreModule} from '@ngrx/store';
-import {metaReducers, reducers} from './app.reducers';
-import {EffectsModule} from '@ngrx/effects';
-import {effects} from './app.effects';
-import {RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
-import {environment} from '../environments/environment';
-import {CustomSerializer} from './utils/custom-route-serializer.util';
-import {HttpClientService} from './services/http-client.service';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import { HomeComponent } from './pages/home/home.component';
-import {MenuModule} from './modules/menu/menu.module';
-import {InterpretationModule} from './modules/interpretation/interpretation.module';
-import { VisualizationCardComponent } from './components/visualization-card/visualization-card.component';
+import {StoreModule }from '@ngrx/store'; 
+import {StoreDevtoolsModule }from '@ngrx/store-devtools'; 
+import {EffectsModule }from '@ngrx/effects';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    VisualizationCardComponent
-  ],
-  imports: [
-    BrowserModule,
-    MenuModule,
-    InterpretationModule,
-    /**
-     * Module for http requests
-     */
-    HttpClientModule,
+import {environment }from '../environments/environment'; 
 
-    /**
-     * Module for routing
-     */
-    AppRoutingModule,
+import {reducers, metaReducers, effects }from './store'
 
-    /**
-     * Reducers
-     */
-    StoreModule.forRoot(reducers, { metaReducers}),
+import { AppRoutingModule } from './app.routing';
 
-    /**
-     * Effects
-     */
-    EffectsModule.forRoot(effects),
+import {AppComponent }from './app.component'; 
+import {AddCommentComponent }from './modules/interpretation/components/add-comment/add-comment.component'; 
+import {AddInterpretationComponent }from './modules/interpretation/components/add-interpretation/add-interpretation.component'; 
+import {DeleteCommentComponent }from './modules/interpretation/components/delete-comment/delete-comment.component'; 
+import {EditCommentComponent }from './modules/interpretation/components/edit-comment/edit-comment.component'; 
+import {EditInterpretationComponent }from './modules/interpretation/components/edit-interpretation/edit-interpretation.component'; 
+import {InterpretationCommentComponent }from './modules/interpretation/components/interpretation-comment/interpretation-comment.component'; 
+import {InterpretationLikeComponent }from './modules/interpretation/components/interpretation-like/interpretation-like.component'; 
+import {InterpretationListComponent }from './modules/interpretation/components/interpretation-list/interpretation-list.component'; 
+import {CommentLikeComponent }from './modules/interpretation/components/comment-like/comment-like.component'; 
+import { VisualizationCardComponent } from './components/visualization-card/visualization-card.component'; 
+import {HomeComponent }from './pages/home/home.component'; 
 
-    /**
-     * @ngrx/router-store keeps router state up-to-date in the store
-     */
-    StoreRouterConnectingModule,
+import {AutosizeDirective }from './modules/interpretation/directives/autosize.directive'
 
-    /**
-     * Dev tool, enabled only in development mode
-     */
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-  ],
-    providers: [
-      { provide: RouterStateSerializer, useClass: CustomSerializer },
-      HttpClientService
-    ],
-  bootstrap: [AppComponent]
+import {AbbreviatePipe }from  '../app/modules/interpretation/pipes/abbreviate.pipe'; 
+import {FilterPipe }from '../app/modules/interpretation/pipes/filter.pipe'; 
+import {TruncatePipe }from '../app/modules/interpretation/pipes/truncate.pipe';
+import { DropdownDirective } from './modules/interpretation/directives/dropdown.directive';
+import { InterpretationLoaderComponent } from './components/interpretation-loader/interpretation-loader.component';
+
+
+
+@NgModule( {
+declarations:[
+AppComponent, 
+AddCommentComponent, 
+AddInterpretationComponent, 
+DeleteCommentComponent, 
+EditCommentComponent, 
+EditInterpretationComponent, 
+InterpretationCommentComponent, 
+InterpretationLikeComponent, 
+InterpretationListComponent, 
+CommentLikeComponent, 
+HomeComponent, 
+AbbreviatePipe, 
+FilterPipe, 
+TruncatePipe, 
+AutosizeDirective, VisualizationCardComponent, DropdownDirective, InterpretationLoaderComponent, 
+], 
+imports:[
+
+BrowserModule, 
+
+HttpClientModule, 
+
+NgxDhis2MenuModule, 
+
+BrowserAnimationsModule,
+
+AppRoutingModule,
+
+AngularFontAwesomeModule,
+
+FormsModule, 
+
+StoreModule.forRoot(reducers,  {metaReducers }), 
+
+EffectsModule.forRoot(effects),  ! environment.production?StoreDevtoolsModule.instrument():[]
+
+], 
+providers:[], 
+bootstrap:[AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -7,7 +7,6 @@ import {InterpretationService} from '../../services/interpretation.service';
   styleUrls: ['./delete-comment.component.css']
 })
 export class DeleteCommentComponent implements OnInit {
-
   deleting: boolean;
   @Input() rootUrl: string;
   @Input() interpretationId: string;
@@ -34,4 +33,5 @@ export class DeleteCommentComponent implements OnInit {
     e.stopPropagation();
     this.onCommentDeleteCancel.emit(true);
   }
+
 }
