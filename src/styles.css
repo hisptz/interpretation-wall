@@ -1,0 +1,28 @@
+.animate-component {
+    position: relative;
+    -webkit-animation-name: animatenterpretation;
+    animation-name: animatenterpretation;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatenterpretation {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animatenterpretation {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}

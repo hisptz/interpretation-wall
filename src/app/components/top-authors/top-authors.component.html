@@ -1,0 +1,7 @@
+<div class="container animate-component">
+    <div class="authors-list" *ngFor="let author of (topAuthors$ | async ); let i = index">
+        <p class="author" title="interpretations: {{(author.interpretationCounts)}}">
+            #{{i + 1}}. {{ author.name }}
+        </p>
+    </div>
+</div>

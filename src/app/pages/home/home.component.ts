@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit {
   interpretations$ : Observable<Interpretation>;
   currentUser$ : Observable<CurrentUser>;
   apiRootUrl$: Observable<string>;
-  // loadingInterpretations: boolean;
   interpretationLoadedStatus$: Observable<boolean>;
+  topAuthors$ : Observable<any>;
   constructor(private store: Store<State>) {
     this.interpretations$ = this.store.select(getAllInterpretations);
     this.currentUser$ = this.store.select(getCurrentUserDetails);

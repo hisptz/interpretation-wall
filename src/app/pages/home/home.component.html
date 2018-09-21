@@ -1,7 +1,7 @@
 <div *ngIf="(interpretationLoadedStatus$ | async) === false">
     <app-interpretation-loader></app-interpretation-loader>
 </div>
-<div class="container-fluid animate-interpretation" *ngIf="(interpretationLoadedStatus$ | async) === true">
+<div class="container-fluid animate-component" *ngIf="(interpretationLoadedStatus$ | async) === true">
     <div class="row">
         <div class="col-7">
             <div class="interpretation-search">
@@ -9,24 +9,18 @@
             </div>
         </div>
         <div class="col-mr col-5">
-            <div class="float-right">
-                <a class="btn btn-outline-secondary">Top 5 interpretations</a>
-                <a class="btn btn-outline-secondary">Top 5 authors</a>
-                <a class="btn btn-outline-secondary">Top 5 commentator</a>
-            </div>
+            <a class="btn btn-outline-secondary" routerLink="/"><i class="fa fa-home"></i></a>
+            <a class="btn btn-outline-secondary" routerLink="/topInterpretations">Top 5 interpretations</a>
+            <a class="btn btn-outline-secondary" routerLink="/topAuthors">Top 5 authors</a>
+            <a class="btn btn-outline-secondary" routerLink="/topCommentators">Top 5 commentator</a>
         </div>
-        <div class="col-12">
-            <div class="card-columns">
-                <div class="card interpretation-card" *ngFor="let interpretation of interpretations$ | async">
-                    <div style="height: 320px; background-color: #eee;">
-                        <app-visualization-card></app-visualization-card>
-                    </div>
-                    <div>
-                        <app-interpretation-list [interpretations]="[interpretation]" [currentUser]="currentUser$ | async" [rootUrl]="apiRootUrl$ | async">
-                        </app-interpretation-list>
-                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div style="margin-top: 5px;">
+                    <router-outlet></router-outlet>
                 </div>
             </div>
+
         </div>
+
     </div>
-</div>
