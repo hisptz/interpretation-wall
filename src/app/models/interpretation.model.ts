@@ -1,3 +1,5 @@
+import { Comment } from './interpretation-comment.model';
+
 export interface Interpretation{
     id: string;
   text: string;
@@ -6,16 +8,7 @@ export interface Interpretation{
   lastUpdated: string;
   likes: number;
   likedBy: Array<any>;
-  comments: Array<{
-    id: string;
-    created: string;
-    text: string;
-    user: {
-      id: string;
-      name: string;
-      displayName: string;
-    }
-  }>;
+  comments: Array<Comment>;
   eventReport: any;
   eventChart: any;
   chart: any;

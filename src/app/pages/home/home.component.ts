@@ -8,7 +8,6 @@ import { getAllInterpretations, getCurrentUserDetails, getApiRootUrl } from '../
 import { getInterpretationLoadedStatus } from '../../store/selectors/interpretation.selector'
 import { State } from '../../store/reducers';
 import { LoadSystemInfo } from '../../store/actions';
-import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
 
 @Component({
   selector: 'app-home',
@@ -33,12 +32,11 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(new LoadSystemInfo());
   }
 
-  //for searching
+  //for searching interpretations
   onInterpretationSearch(e){
     let matchedInterpretationLimitCount = 5;
     let regExp = e.target.value.toLowerCase();
     let matchedInterpretation : Array<Interpretation> = [];
-    let interpretationsCount : number = 0;
     
     this.interpretations$.subscribe((interpretations)=>{ interpretations.map( (interpretation) =>{
         regExp = new RegExp(regExp, 'i');
@@ -52,13 +50,5 @@ export class HomeComponent implements OnInit {
     }else{
       console.log('No match')
     }
-    
-    // let searchedItem = e.target.value.toLowerCase();
-    // this.interpretations$.subscribe((interpretations) =>{
-    //   interpretations.map((interpretation) => {
-    //       console.log('length::', e.target.value.length);
-    //       console.log(interpretation.text.slice(0, e.target.value.length).toLowerCase())
-    //   })
-    // })
-  }  
+   }  
 }
