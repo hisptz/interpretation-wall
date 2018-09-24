@@ -1,6 +1,6 @@
 <div class="container animate-component">
     <div class="authors-list" *ngFor="let author of (topAuthors$ | async ); let i = index">
-        <p class="author" title="interpretations: {{(author.interpretationCounts)}}">
+        <p class="author" title="interpretations: {{(author.interpretationCounts)}}" style="cursor: pointer">
             #{{i + 1}}. {{ author.name }} <i class="fa fa-user"></i>
         </p>
     </div>

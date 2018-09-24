@@ -8,6 +8,7 @@ import { getAllInterpretations, getCurrentUserDetails, getApiRootUrl } from '../
 import { getInterpretationLoadedStatus } from '../../store/selectors/interpretation.selector'
 import { State } from '../../store/reducers';
 import { LoadSystemInfo } from '../../store/actions';
+import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   apiRootUrl$: Observable<string>;
   interpretationLoadedStatus$: Observable<boolean>;
   topAuthors$ : Observable<any>;
+
   constructor(private store: Store<State>) {
     this.interpretations$ = this.store.select(getAllInterpretations);
     this.currentUser$ = this.store.select(getCurrentUserDetails);
@@ -30,4 +32,33 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadSystemInfo());
   }
+
+  //for searching
+  onInterpretationSearch(e){
+    let matchedInterpretationLimitCount = 5;
+    let regExp = e.target.value.toLowerCase();
+    let matchedInterpretation : Array<Interpretation> = [];
+    let interpretationsCount : number = 0;
+    
+    this.interpretations$.subscribe((interpretations)=>{ interpretations.map( (interpretation) =>{
+        regExp = new RegExp(regExp, 'i');
+        if(regExp.test(interpretation.text)){
+          matchedInterpretation.push(interpretation)
+        }
+      }) 
+    })
+    if(matchedInterpretation.length > 0){
+      console.log(matchedInterpretation)
+    }else{
+      console.log('No match')
+    }
+    
+    // let searchedItem = e.target.value.toLowerCase();
+    // this.interpretations$.subscribe((interpretations) =>{
+    //   interpretations.map((interpretation) => {
+    //       console.log('length::', e.target.value.length);
+    //       console.log(interpretation.text.slice(0, e.target.value.length).toLowerCase())
+    //   })
+    // })
+  }  
 }

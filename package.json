@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --port 4200 --proxy-config proxy.config.json",
+        "start": "ng serve --port 8100 --proxy-config proxy.config.json",
         "build": "ng build --prod --aot",
         "test": "ng test",
         "lint": "ng lint",
@@ -33,6 +33,7 @@
         "bootstrap": "^4.1.3",
         "core-js": "^2.5.4",
         "font-awesome": "^4.7.0",
+        "jquery": "^3.3.1",
         "lodash": "^4.17.10",
         "moment": "^2.22.2",
         "rxjs": "^6.0.0",
