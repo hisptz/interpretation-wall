@@ -47,7 +47,6 @@ export const getTopComentators = createSelector(
     (users: User[], comments: Comment[]) => {
         let rankedCommentatorsList: Array<{ id : string,name : string, commentCounts : number}> = []
         comments.map((comment) =>{
-            console.log(comment);
             users.map( (user) => {
                 if(user.id === comment.user.id){
                     if(_.some(rankedCommentatorsList, {id : user.id})){

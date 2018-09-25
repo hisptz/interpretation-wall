@@ -1,4 +1,6 @@
 import { createSelector } from '@ngrx/store';
+import * as _ from 'lodash';
+
 import { getRootState, State } from '../reducers';
 import { Comment } from '../../models/interpretation-comment.model';
 import { Interpretation } from '../../models/interpretation.model';
@@ -19,7 +21,10 @@ export const getAllComments = createSelector(
         let interpretationsComments: Comment[] = [];
         interpretations.map(
             (interpretation) => {
-                interpretationsComments.push(interpretation.comments)
+                const comments = _.filter(interpretation.comments, (comment)=>{return comment.id});
+                comments.map((comment) => { 
+                    interpretationsComments.push(comment);
+                })
             }
         )
         return interpretationsComments;
