@@ -35,7 +35,7 @@ export const getAllComments = createSelector(
 export const getTopInterpetations = createSelector(
     getAllInterpretations,
     (interpretations : Interpretation) => {
-        let rankedInterpretation : Array<{id : string, text: string, commentCounts: number}> = [];
+        let rankedInterpretation : Array<{id : string, text: string, user : {id: string, name : string, displayName: string},commentCounts: number}> = [];
         interpretations.map(
             (interpretation) => {
                 let countedComments = 0;
@@ -43,7 +43,7 @@ export const getTopInterpetations = createSelector(
                 comments.map( () =>{
                     ++countedComments
                 })
-                const addedInterpretation = {id: interpretation.id,text : interpretation.text, commentCounts: countedComments}
+                const addedInterpretation = {id: interpretation.id,text : interpretation.text, user : interpretation.user, commentCounts: countedComments}
                 rankedInterpretation = [...rankedInterpretation, addedInterpretation] 
             }
         )

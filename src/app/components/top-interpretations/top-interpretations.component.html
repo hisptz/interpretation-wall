@@ -1,3 +1,11 @@
-<p *ngFor="let interpretation of (topInterpretations$ | async)">
-    {{ interpretation.text }}
-</p>
+<div class="interpretation" *ngFor="let interpretation of (topInterpretations$ | async)">
+    <div class="interpretation-body">
+        <div>
+            <b>{{interpretation.user.name}}</b>
+        </div>
+        <div class="interpretation-text" title="comments: {{ interpretation.commentCounts }}">
+            <i class="fa fa-comments" style="color: #276696;"></i> {{interpretation.text}}
+        </div>
+    </div>
+    <hr>
+</div>
