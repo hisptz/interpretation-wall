@@ -1,50 +1,34 @@
-.loading-message {
-    opacity: 0.5;
-    text-align: center;
-}
-
-.loader {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    position: relative;
-    margin: 0 auto;
-}
-
-#loader-balls span {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    background-color: #276696;
-    margin: 35px 5px;
-}
-
-#loader-balls span:nth-child(1) {
-    animation: bounce 1s ease-in-out infinite;
-}
-
-#loader-balls span:nth-child(2) {
-    animation: bounce 1s ease-in-out 0.33s infinite;
-}
-
-#loader-balls span:nth-child(3) {
-    animation: bounce 1s ease-in-out 0.66s infinite;
-}
-
-@keyframes bounce {
-    0%,
-    75%,
+@keyframes loadingGlimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    50% {
+        background-position: 0px 0;
+    }
     100% {
-        -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-        -o-transform: translateY(0);
-        transform: translateY(0);
+        background-position: 468px 0;
     }
-    25% {
-        -webkit-transform: translateY(-20px);
-        -ms-transform: translateY(-20px);
-        -o-transform: translateY(-20px);
-        transform: translateY(-20px);
-    }
+}
+
+.animated-background {
+    margin: 10px;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: loadingGlimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 10%, #dddddd 20%, #eeeeee 35%);
+    background-size: 800px 104px;
+    height: 100%;
+    position: relative;
+}
+
+.search-box>.animated-background {
+    width: 57%;
+}
+
+.interpretations-block>.animated-background {
+    height: 320px;
+    margin: 5px;
 }

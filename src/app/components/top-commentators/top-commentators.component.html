@@ -1,6 +1,6 @@
 <div class="container animate-component">
     <div class="commentator-list" *ngFor="let commentator of (topCommentators$ | async ); let i = index">
-        <p class="commentator" title="interpretations: {{(commentator.commentCounts)}}" style="cursor: pointer">
+        <p class="commentator" title="comments: {{(commentator.commentCounts)}}" style="cursor: pointer">
             #{{i + 1}}. {{ commentator.name }} <i class="fa fa-user"></i>
         </p>
     </div>
