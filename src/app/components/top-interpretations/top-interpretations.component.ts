@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { State, getTopInterpetations } from '../../store';
 
 @Component({
   selector: 'app-top-interpretations',
@@ -6,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-interpretations.component.css']
 })
 export class TopInterpretationsComponent implements OnInit {
-
-  constructor() { }
-
+  topInterpretations$ : Observable<any>
+  constructor(private store: Store<State>) {
+    this.topInterpretations$ = this.store.select(getTopInterpetations)
+   }
+  
   ngOnInit() {
   }
 

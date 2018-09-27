@@ -31,3 +31,24 @@ export const getAllComments = createSelector(
     }
 
 )
+
+export const getTopInterpetations = createSelector(
+    getAllInterpretations,
+    (interpretations : Interpretation) => {
+        let rankedInterpretation : Array<{id : string, text: string, commentCounts: number}> = [];
+        interpretations.map(
+            (interpretation) => {
+                let countedComments = 0;
+                const comments = _.filter(interpretation.comments, (comment)=>{return comment.id});
+                comments.map( () =>{
+                    ++countedComments
+                })
+                const addedInterpretation = {id: interpretation.id,text : interpretation.text, commentCounts: countedComments}
+                rankedInterpretation = [...rankedInterpretation, addedInterpretation] 
+            }
+        )
+
+        rankedInterpretation = _.reverse(_.sortBy(rankedInterpretation, ['commentCounts']))
+        return _.slice(rankedInterpretation, 0 , 5);
+    }
+)

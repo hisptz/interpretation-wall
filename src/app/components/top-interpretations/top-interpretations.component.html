@@ -1,3 +1,3 @@
-<p>
-  top-interpretations works!
+<p *ngFor="let interpretation of (topInterpretations$ | async)">
+    {{ interpretation.text }}
 </p>
