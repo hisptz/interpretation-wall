@@ -18,4 +18,9 @@ export class TopInterpretationsComponent implements OnInit {
   ngOnInit() {
   }
 
+  viewInterpretation(id : string){
+    //call method to view in ful screen
+    console.log('SelectedIinterpretationId:',id);
+  }
+
 }

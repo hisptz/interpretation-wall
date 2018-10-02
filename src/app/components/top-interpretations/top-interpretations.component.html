@@ -1,6 +1,6 @@
 <!--once clicke should be viewed on full screen-->
-<div class="interpretation" *ngFor="let interpretation of (topInterpretations$ | async)">
-    <div class="interpretation-body">
+<div class="interpretation animate-component" *ngFor="let interpretation of (topInterpretations$ | async)">
+    <div class="interpretation-body" (click)="viewInterpretation(interpretation.id)">
         <div>
             <b>{{interpretation.user.name}}</b>
         </div>
