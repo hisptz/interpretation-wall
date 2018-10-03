@@ -5,19 +5,19 @@ import { getRootState, State } from '../reducers';
 import { Comment } from '../../models/interpretation-comment.model';
 import { Interpretation } from '../../models/interpretation.model';
 
-import { getInterpretations, getInterpretationLoaded } from '../reducers/interpretation.reducer';
+import * as fromInterpretation from '../reducers/interpretation.reducer';
 
 export const getInterpretationState = createSelector(
     getRootState, (state: State) => state.interpretations
 )
 
-export const getAllInterpretations = createSelector(getInterpretationState, getInterpretations);
+export const getAllInterpretations = createSelector(getInterpretationState, fromInterpretation.selectAllInterpretations);
 
-export const getInterpretationLoadedStatus =  createSelector(getInterpretationState, getInterpretationLoaded);
+export const getInterpretationLoadedStatus =  createSelector(getInterpretationState, fromInterpretation.getInterpretationLoadedState);
 
 export const getAllComments = createSelector(
     getAllInterpretations,
-    (interpretations: Interpretation) =>{
+    (interpretations: Interpretation[]) =>{
         let interpretationsComments: Comment[] = [];
         interpretations.map(
             (interpretation) => {
@@ -34,7 +34,7 @@ export const getAllComments = createSelector(
 
 export const getTopInterpetations = createSelector(
     getAllInterpretations,
-    (interpretations : Interpretation) => {
+    (interpretations : Interpretation[]) => {
         let rankedInterpretation : Array<{id : string, text: string, user : {id: string, name : string, displayName: string},commentCounts: number}> = [];
         interpretations.map(
             (interpretation) => {

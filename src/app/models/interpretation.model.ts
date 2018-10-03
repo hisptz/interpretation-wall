@@ -7,6 +7,11 @@ export interface Interpretation{
   created: string;
   lastUpdated: string;
   likes: number;
+  user : {
+    id : string,
+    name : string,
+    displayName : string;
+  };
   likedBy: Array<any>;
   comments: Array<Comment>;
   eventReport: any;

@@ -1,9 +1,16 @@
 import { Action } from '@ngrx/store';
+import { ErrorMessage } from '../../models/error-message.model';
 
 export enum InterpretationActionTypes{
     LoadInterpretation = '[Interpretation] Load Interpretation',
     LoadInterpretationSuccess = '[Interpretation] Load Interpretation success',
-    LoadInterpretationFail = '[Interpretation] LOad Interpretation Fail'
+    LoadInterpretationFail = '[Interpretation] Load Interpretation Fail',
+    DeleteInterpretation = '[Interpretation] Add interpretation',
+    EditInterpretation = '[INterpretation] Edit Interpretation',
+    DeleteInterpretationFail = '[Interpretation] Add interpretation Fail',
+    EditInterpretationFail = '[INterpretation] Edit Interpretation Fail',
+    DeleteInterpretationSuccess = '[Interpretation] Add interpretationSUccess',
+    EditInterpretationSuccess = '[INterpretation] Edit Interpretation Success',
 }
 
 export class LoadInterpretation implements Action{
@@ -21,4 +28,43 @@ export class LoadInterpreationFail implements Action{
     constructor(public error: any){};
 }
 
-export type InterpretationAction = LoadInterpretation | LoadInterpreationFail | LoadInterpretationSuccess;
+export class DeleteInterpretation implements Action{
+    readonly type = InterpretationActionTypes.DeleteInterpretation;
+    constructor(public payload: any){}
+}
+
+export class EditInterpretation implements Action{
+    readonly type = InterpretationActionTypes.EditInterpretation;
+    constructor(public payload: any){}
+}
+
+export class DeleteInterpretationFail implements Action{
+    readonly type = InterpretationActionTypes.DeleteInterpretationFail;
+    constructor(public error : ErrorMessage){}
+}
+
+export class EditInterpretationFail implements Action{
+    readonly type = InterpretationActionTypes.EditInterpretationFail;
+    constructor(public error : ErrorMessage){}
+}
+
+export class DeleteInterpretationSuccess implements Action{
+    readonly type = InterpretationActionTypes.DeleteInterpretationSuccess;
+    constructor(public payload : any){}
+}
+
+export class EditInterpretationSuccess implements Action{
+    readonly type = InterpretationActionTypes.DeleteInterpretationSuccess;
+    constructor(public payload : any){}
+}
+
+export type InterpretationAction =  
+| LoadInterpretation 
+| LoadInterpreationFail 
+| LoadInterpretationSuccess 
+| DeleteInterpretation 
+| EditInterpretation 
+| DeleteInterpretationFail 
+| EditInterpretationFail
+| DeleteInterpretationSuccess
+| EditInterpretationSuccess ;

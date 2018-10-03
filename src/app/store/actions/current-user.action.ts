@@ -8,7 +8,7 @@ export enum CurrentUserActionTypes{
 
 export class LoadCurrentUser implements Action{
     readonly type = CurrentUserActionTypes.LoadCurrentUser;
-    //constructor(public payload: any){};
+    constructor(){};
 }
 
 export class LoadCurrentUserSuccess implements Action{
