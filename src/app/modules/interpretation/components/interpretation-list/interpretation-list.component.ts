@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} fr
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import {InterpretationService} from '../../services/interpretation.service';
+import { Store } from '@ngrx/store';
+import { State, EditInterpretation } from '../../../../store';
 
 @Component({
   selector: 'app-interpretation-list',
@@ -16,9 +18,10 @@ export class InterpretationListComponent implements OnInit {
   @Output() onInterpretationUpdate: EventEmitter<any> = new EventEmitter<any>();
   @Input() visualizationTypeObject: any;
   interpretationTerm: string;
+
   
 
-  constructor(private interpretationService: InterpretationService) {
+  constructor(private interpretationService: InterpretationService, private store : Store<State>) {
    }
 
   ngOnInit() {
@@ -265,7 +268,9 @@ export class InterpretationListComponent implements OnInit {
 
   }
 
+  //put a function to delete, using effects
   emitInterpretationUpdates() {
+    this.store.dispatch(new EditInterpretation(this.interpretations))
     this.onInterpretationUpdate.emit(this.interpretations);
   }
 
@@ -284,6 +289,41 @@ export class InterpretationListComponent implements OnInit {
       return newInterpretationObject;
     });
   }
-
-
 }
+
+// e.stopPropagation();
+//     this.interpretations = this.interpretations.map((interpretationObject) => {
+//       const newInterpretationObject: any = {...interpretationObject};
+//       if (interpretationObject.id === interpretation.id) {
+//         newInterpretationObject.showDeleteDialog = false;
+//         newInterpretationObject.deleting = true;
+//       }
+
+//       return newInterpretationObject;
+//     });
+
+//     this.interpretationService.delete(interpretation, this.rootUrl).subscribe(() => {
+//       const interpretationIndex = _.findIndex(this.interpretations,
+//         _.find(this.interpretations, ['id', interpretation.id]));
+
+//       if (interpretationIndex !== -1) {
+//         this.interpretations = [
+//           ...this.interpretations.slice(0, interpretationIndex),
+//           ...this.interpretations.slice(interpretationIndex + 1)
+//         ];
+//       }
+
+//       this.emitInterpretationUpdates();
+//     }, deleteError => {
+//       this.interpretations = this.interpretations.map((interpretationObject) => {
+//         const newInterpretationObject: any = {...interpretationObject};
+//         if (interpretationObject.id === interpretation.id) {
+//           newInterpretationObject.deleting = false;
+//         }
+
+//         return newInterpretationObject;
+//       });
+//     });
+
+//   }
+

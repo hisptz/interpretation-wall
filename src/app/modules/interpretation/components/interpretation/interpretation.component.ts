@@ -13,7 +13,7 @@ import { CurrentUser } from '../../../../models/current-user.model';
   styleUrls: ['./interpretation.component.css']
 })
 export class InterpretationComponent implements OnInit {
-  interpretations$ : Observable<Interpretation>;
+  interpretations$ : Observable<Interpretation[]>;
   currentUser$ : Observable<CurrentUser>;
   apiRootUrl$: Observable<string>;
   
