@@ -6,11 +6,11 @@ export enum InterpretationActionTypes{
     LoadInterpretationSuccess = '[Interpretation] Load Interpretation success',
     LoadInterpretationFail = '[Interpretation] Load Interpretation Fail',
     DeleteInterpretation = '[Interpretation] Add interpretation',
-    EditInterpretation = '[INterpretation] Edit Interpretation',
+    EditInterpretation = '[Interpretation] Edit Interpretation',
     DeleteInterpretationFail = '[Interpretation] Delete interpretation Fail',
-    EditInterpretationFail = '[INterpretation] Edit Interpretation Fail',
+    EditInterpretationFail = '[Interpretation] Edit Interpretation Fail',
     DeleteInterpretationSuccess = '[Interpretation] Delete interpretationSuccess',
-    EditInterpretationSuccess = '[INterpretation] Edit Interpretation Success',
+    EditInterpretationSuccess = '[Interpretation] Edit Interpretation Success',
 }
 
 export class LoadInterpretation implements Action{

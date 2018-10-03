@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {InterpretationService} from '../../services/interpretation.service';
+import { Store } from '@ngrx/store';
+import { State, EditInterpretation } from '../../../../store';
 
 @Component({
   selector: 'app-edit-interpretation',
@@ -11,7 +13,7 @@ export class EditInterpretationComponent implements OnInit {
   @Output() onInterpretationEdit: EventEmitter<any> = new EventEmitter<any>();
   @Input() interpretation: any;
   creating: boolean;
-  constructor(private interpretationService: InterpretationService) {
+  constructor(private interpretationService: InterpretationService, private store : Store<State>) {
     this.creating = false;
   }
 
@@ -21,12 +23,13 @@ export class EditInterpretationComponent implements OnInit {
 
   editInterpretation(e) {
     e.stopPropagation();
-    this.creating = true;
-    this.interpretationService.edit(this.interpretation, this.rootUrl)
-      .subscribe((interpretation: any) => {
-        this.creating = false;
-        this.onInterpretationEdit.emit(interpretation);
-      }, error => console.log(error))
+    this.store.dispatch(new EditInterpretation(this.interpretation))
+    // this.creating = true;
+    // this.interpretationService.edit(this.interpretation, this.rootUrl)
+    //   .subscribe((interpretation: any) => {
+    //     this.creating = false;
+    //     this.onInterpretationEdit.emit(interpretation);
+    //   }, error => console.log(error))
   }
 
   cancel(e) {

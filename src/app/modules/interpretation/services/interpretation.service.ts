@@ -10,7 +10,7 @@ export class InterpretationService{
 
   constructor(private httpService: NgxDhis2HttpClientService) { }
 
-  getInterpretation(interpretation: any, rootUrl: string) {
+  getInterpretation(interpretation: any) {
     const interpretationUrl = 'interpretations/' + interpretation.id + '.json?fields=id,type,text,lastUpdated,href,' +
       'created,likes,likedBy[id,name,displayName],user[id,name,displayName],comments[id,created,lastUpdated,text,' +
       'user[id,name,displayName]],' +
@@ -35,11 +35,11 @@ export class InterpretationService{
     });
   }
   
-    edit(interpretation: any, rootUrl) {
+    edit(interpretation: any) {
     return new Observable(observer => {
       this.httpService.put( '/interpretations/' + interpretation.id, interpretation.text)
         .subscribe(() => {
-          this.getInterpretation(interpretation, rootUrl)
+          this.getInterpretation(interpretation)
             .subscribe((interpretationObject: any) => {
               observer.next(interpretationObject);
               observer.complete();
@@ -59,7 +59,7 @@ export class InterpretationService{
         this.httpService.delete('interpretations/' + interpretation.id + '/like');
 
       likePromise.subscribe(() => {
-        this.getInterpretation(interpretation, rootUrl)
+        this.getInterpretation(interpretation)
           .subscribe((interpretationObject) => {
             observer.next(interpretationObject);
             observer.complete();
@@ -72,7 +72,7 @@ export class InterpretationService{
     return new Observable(observer => {
       this.httpService.post('interpretations/' + interpretation.id + '/comments', interpretation.comment)
         .subscribe(() => {
-          this.getInterpretation(interpretation, rootUrl)
+          this.getInterpretation(interpretation)
             .subscribe((interpretationObject: any) => {
               observer.next(interpretationObject);
               observer.complete();
@@ -89,7 +89,7 @@ export class InterpretationService{
     return new Observable(observer => {
       this.httpService.put('interpretations/' + interpretation.id + '/comments/' + comment.id, comment.text)
         .subscribe(() => {
-          this.getInterpretation(interpretation, rootUrl)
+          this.getInterpretation(interpretation)
             .subscribe((interpretationObject: any) => {
               observer.next(interpretationObject);
               observer.complete();

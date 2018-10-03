@@ -76,8 +76,8 @@ export function interpretationReducer(
         case InterpretationActionTypes.DeleteInterpretationSuccess: 
         return adapter.removeOne(action.payload.id, {
             ...state,
-            deleted : false,
-            deleting : true,
+            deleted : true,
+            deleting : false,
             error : null
         });
 
@@ -100,8 +100,8 @@ export function interpretationReducer(
         case InterpretationActionTypes.EditInterpretationSuccess: 
         return adapter.updateOne(action.payload, {
             ...state,
-            edited : false,
-            editing : true,
+            edited : true,
+            editing : false,
             error : null
         });
 
@@ -122,6 +122,6 @@ export const {
  export const getInterpretationDeletingState = (state : InterpretationState) => state. loading;
  export const getInterpretationDeletedState = (state : InterpretationState) => state. loading;
  export const getInterpretationEditingState = (state : InterpretationState) => state. loading;
- export const getInterpretationEditedgState = (state : InterpretationState) => state. loading;
+ export const getInterpretationEditedState = (state : InterpretationState) => state. loading;
 
  
