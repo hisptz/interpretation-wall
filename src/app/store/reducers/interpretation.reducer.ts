@@ -74,7 +74,7 @@ export function interpretationReducer(
         };
 
         case InterpretationActionTypes.DeleteInterpretationSuccess: 
-        return adapter.removeOne(action.payload, {
+        return adapter.removeOne(action.payload.id, {
             ...state,
             deleted : false,
             deleting : true,
@@ -89,7 +89,7 @@ export function interpretationReducer(
             error : null
         };
 
-        case InterpretationActionTypes.DeleteInterpretationFail: 
+        case InterpretationActionTypes.EditInterpretationFail: 
         return{
             ...state,
             edited : false,
@@ -97,7 +97,7 @@ export function interpretationReducer(
             error : action.error
         };
 
-        case InterpretationActionTypes.DeleteInterpretationSuccess: 
+        case InterpretationActionTypes.EditInterpretationSuccess: 
         return adapter.updateOne(action.payload, {
             ...state,
             edited : false,

@@ -48,7 +48,8 @@ export class InterpretationService{
     });
   }  
   
-    delete(interpretation: any, rootUrl) {
+    delete(interpretation: any) {
+      console.log(interpretation)
     return this.httpService.delete('/interpretations/' + interpretation.id);
   }
 

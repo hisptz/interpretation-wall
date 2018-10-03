@@ -15,7 +15,7 @@ import { LoadSystemInfo } from '../../store/actions';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  interpretations$ : Observable<Interpretation>;
+  interpretations$ : Observable<Interpretation[]>;
   currentUser$ : Observable<CurrentUser>;
   apiRootUrl$: Observable<string>;
   interpretationLoadedStatus$: Observable<boolean>;

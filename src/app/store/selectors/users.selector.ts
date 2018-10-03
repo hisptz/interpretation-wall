@@ -17,7 +17,7 @@ export const getAllUsers = createSelector( getUserState, getUsers)
 export const getTopAuthors = createSelector(
     getAllUsers,
      getAllInterpretations, 
-     (users: User[], interpretations: Interpretation) =>{
+     (users: User[], interpretations: Interpretation[]) =>{
          let rankedAuthorsList : Array<{ id : string,name : string, interpretationCounts : number}> = [ ]
         interpretations.map((interpretation: any) => {
             users.map( user => {

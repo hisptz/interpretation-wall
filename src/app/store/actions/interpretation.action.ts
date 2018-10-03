@@ -7,9 +7,9 @@ export enum InterpretationActionTypes{
     LoadInterpretationFail = '[Interpretation] Load Interpretation Fail',
     DeleteInterpretation = '[Interpretation] Add interpretation',
     EditInterpretation = '[INterpretation] Edit Interpretation',
-    DeleteInterpretationFail = '[Interpretation] Add interpretation Fail',
+    DeleteInterpretationFail = '[Interpretation] Delete interpretation Fail',
     EditInterpretationFail = '[INterpretation] Edit Interpretation Fail',
-    DeleteInterpretationSuccess = '[Interpretation] Add interpretationSUccess',
+    DeleteInterpretationSuccess = '[Interpretation] Delete interpretationSuccess',
     EditInterpretationSuccess = '[INterpretation] Edit Interpretation Success',
 }
 
@@ -54,7 +54,7 @@ export class DeleteInterpretationSuccess implements Action{
 }
 
 export class EditInterpretationSuccess implements Action{
-    readonly type = InterpretationActionTypes.DeleteInterpretationSuccess;
+    readonly type = InterpretationActionTypes.EditInterpretationSuccess;
     constructor(public payload : any){}
 }
 
