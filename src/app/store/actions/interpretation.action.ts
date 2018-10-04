@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity'
 import { ErrorMessage } from '../../models/error-message.model';
+import { Interpretation } from '../../models/interpretation.model';
 
 export enum InterpretationActionTypes{
     LoadInterpretation = '[Interpretation] Load Interpretation',
@@ -12,7 +14,7 @@ export enum InterpretationActionTypes{
     DeleteInterpretationSuccess = '[Interpretation] Delete interpretationSuccess',
     EditInterpretationSuccess = '[Interpretation] Edit Interpretation Success',
 }
-
+ 
 export class LoadInterpretation implements Action{
     readonly type = InterpretationActionTypes.LoadInterpretation;
     constructor(public payload: any){};
@@ -55,7 +57,7 @@ export class DeleteInterpretationSuccess implements Action{
 
 export class EditInterpretationSuccess implements Action{
     readonly type = InterpretationActionTypes.EditInterpretationSuccess;
-    constructor(public payload : any){}
+    constructor(public payload : {interpretation : Update<Interpretation>}){}
 }
 
 export type InterpretationAction =  

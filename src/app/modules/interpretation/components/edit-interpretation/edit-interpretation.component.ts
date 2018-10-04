@@ -11,9 +11,10 @@ import { State, EditInterpretation } from '../../../../store';
 export class EditInterpretationComponent implements OnInit {
   @Input() rootUrl: string;
   @Output() onInterpretationEdit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onCancelInterpretationEdit =new  EventEmitter<boolean>() 
   @Input() interpretation: any;
   creating: boolean;
-  constructor(private interpretationService: InterpretationService, private store : Store<State>) {
+  constructor( private store : Store<State>) {
     this.creating = false;
   }
 
@@ -34,6 +35,7 @@ export class EditInterpretationComponent implements OnInit {
 
   cancel(e) {
     e.stopPropagation();
+    this.onCancelInterpretationEdit.emit(true);
   }
 
 }

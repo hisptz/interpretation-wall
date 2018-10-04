@@ -98,7 +98,7 @@ export function interpretationReducer(
         };
 
         case InterpretationActionTypes.EditInterpretationSuccess: 
-        return adapter.updateOne(action.payload, {
+        return adapter.updateOne(action.payload.interpretation, {
             ...state,
             edited : true,
             editing : false,
