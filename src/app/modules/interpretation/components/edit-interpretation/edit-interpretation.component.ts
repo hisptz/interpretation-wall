@@ -24,7 +24,7 @@ export class EditInterpretationComponent implements OnInit {
 
   editInterpretation(e) {
     e.stopPropagation();
-    this.store.dispatch(new EditInterpretation(this.interpretation))
+    this.store.dispatch(new EditInterpretation({id : this.interpretation.id, changes: this.interpretation}))
     // this.creating = true;
     // this.interpretationService.edit(this.interpretation, this.rootUrl)
     //   .subscribe((interpretation: any) => {

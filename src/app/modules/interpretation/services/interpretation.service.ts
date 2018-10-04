@@ -20,7 +20,7 @@ export class InterpretationService{
   
     create(interpretationData: any, rootUrl: any) {
     return new Observable(observer => {
-      const url = '/interpretations/' + interpretationData.type + '/' + interpretationData.id;
+      const url = 'interpretations/' + interpretationData.type + '/' + interpretationData.id;
       this.httpService.post(url, interpretationData.message).subscribe(() => {
         const interpretationsUrl = interpretationData.type + 's/' + interpretationData.id +
           '?fields=interpretations[id,type,text,lastUpdated,href,created,likes,likedBy[id,name,displayName],' +
@@ -41,6 +41,7 @@ export class InterpretationService{
         .subscribe(() => {
           this.getInterpretation(interpretation)
             .subscribe((interpretationObject: any) => {
+              console.log(interpretationObject)
               observer.next(interpretationObject);
               observer.complete();
             }, interpretationError => observer.error(interpretationError));
@@ -49,8 +50,7 @@ export class InterpretationService{
   }  
   
     delete(interpretation: any) {
-      console.log(interpretation)
-    return this.httpService.delete('/interpretations/' + interpretation.id);
+    return this.httpService.delete('interpretations/' + interpretation.id);
   }
 
   updateLikeStatus(interpretation: any, rootUrl: string, like: boolean = true) {
