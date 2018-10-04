@@ -58,7 +58,7 @@ currentUserLoaded$:Observable < any >  = this.actions$.pipe(
 @Effect() editInterpretation$ = this.actions$.pipe(
     ofType(InterpretationActionTypes.EditInterpretation),
     mergeMap((action: any) => this.interpretationService.edit(action.payload).pipe(
-        map(() => new EditInterpretationSuccess(action.payload)),
+        map(() => new EditInterpretationSuccess({interpretation : {id: action.payload.id, changes : action.payload}})),
         catchError((error : ErrorMessage) => of(new EditInterpretationFail(error)))
         ))
 )
