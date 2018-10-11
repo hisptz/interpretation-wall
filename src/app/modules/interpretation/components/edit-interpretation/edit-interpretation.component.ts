@@ -23,7 +23,7 @@ export class EditInterpretationComponent implements OnInit {
 
 
   ngOnInit() {
-  }c
+  }
 
   // editInterpretation(e) {
   //   e.stopPropagation();

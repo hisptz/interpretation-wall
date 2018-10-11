@@ -18,6 +18,14 @@ export const getInterpretationEditingStatus = createSelector(getInterpretationSt
 export const getInterpretationEditedStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationEditedState);
 export const getInterpretationDeletingtingStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationDeletingState);
 export const getInterpretationDeletedtingStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationDeletedState);
+export const getInterpretationLikingStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationLikingState);
+export const getInterpretationLikedStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationLikedState);
+export const getCommentEditingStatus = createSelector(getInterpretationState, fromInterpretation.getCommentEditingState);
+export const getCommentEditedStatus = createSelector(getInterpretationState, fromInterpretation.getCommentEditedState);
+export const getCommentDeletingStatus = createSelector(getInterpretationState, fromInterpretation.getCommentDeletingState);
+export const getCommentDeletedStatus = createSelector(getInterpretationState, fromInterpretation.getCommentDeletedState);
+export const getCommentPostingStatus = createSelector(getInterpretationState, fromInterpretation.getCommentPostingState);
+export const getCommentPostedStatus = createSelector(getInterpretationState, fromInterpretation.getCommentPostedState);
 
 export const getAllComments = createSelector(
     getAllInterpretations,

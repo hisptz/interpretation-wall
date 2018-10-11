@@ -17,11 +17,15 @@ LoadInterpretation,
 DeleteInterpretationSuccess,
 DeleteInterpretationFail,
 EditInterpretationSuccess,
-EditInterpretationFail
+EditInterpretationFail,
+PostInterpretationCommentSuccess,
+PostInterpretationCommentFail,
+EditInterpretationCommentSuccess,
+EditInterpretationCommentFail,
+DeleteInterpretationCommentSuccess,
+DeleteInterpretationCommentFail
  }from '../actions/interpretation.action'; 
 import { ErrorMessage } from '../../models/error-message.model';
-
-
 
 @Injectable()
 export class InterpretationEffect {
@@ -42,7 +46,7 @@ currentUserLoaded$:Observable < any >  = this.actions$.pipe(
 
 @Effect()loadInterpretation$ = this.actions$.pipe(
     ofType(InterpretationActionTypes.LoadInterpretation), 
-        switchMap((action:any) => this.getInterpretations(action.payload.apiRootUrl).pipe(
+        switchMap((action:any) => this.interpretationService.getInterpretations(action.payload.apiRootUrl).pipe(
             map((interpretations:Interpretation[]) => new LoadInterpretationSuccess(interpretations)), 
             catchError((errorNotification:any) => of(new LoadNotificationSuccess(errorNotification)))
 )))
@@ -63,13 +67,29 @@ currentUserLoaded$:Observable < any >  = this.actions$.pipe(
         ))
 )
 
-getInterpretations(rootUrl) {
-    return new Observable(observer =>  {
-        this.httpService.get(`interpretations.json?fields=id,type,text,created,lastUpdated,likes,likedBy[id,name],user[id,name,displayName],comments[id,created,lastUpdated,text,user[id,name,displayName]],eventReport[*],eventChart[*],chart[*],map[id,name,mapViews[*]],reportTable[*]&paging=false`)
-        .subscribe((response:any) =>  {
-            observer.next(response.interpretations); 
-            observer.complete(); 
-        }, (error) => observer.error(error)); 
-      }); 
-    }
+@Effect() postInterpretationComment$ = this.actions$.pipe(
+    ofType(InterpretationActionTypes.PostInterpretationComment),
+    mergeMap((action: any) => this.interpretationService.postInterpretationComment(action.interpretationId, action.payload).pipe(
+        map((interpretation) => new PostInterpretationCommentSuccess({interpretation : {id : action.interpretationId, changes: interpretation}})),
+        catchError((error : ErrorMessage) => of(new PostInterpretationCommentFail(error)))
+    ))
+)
+
+@Effect() editInterpretationComment$ = this.actions$.pipe(
+    ofType(InterpretationActionTypes.EditInterpretationComment),
+    mergeMap((action : any) => this.interpretationService.editComment(action.interpretation, action.comment).pipe(
+        map((interpretation) => new EditInterpretationCommentSuccess({interpretation : {id: action.interpretation.id, changes: action.comment}})),
+        catchError((error : ErrorMessage) => of(new EditInterpretationCommentFail(error)))
+    ))
+)
+
+@Effect() deleteInterpretationComment$ = this.actions$.pipe(
+    ofType(InterpretationActionTypes.DeleteInterpretationComment),
+    mergeMap((action : any)=> this.interpretationService.deleteComment(action.interpretation.id, action.comment.id).pipe(
+        map(() => new DeleteInterpretationCommentSuccess(action.interpretation)),
+        catchError((error : ErrorMessage) => of(new DeleteInterpretationCommentFail(error)))
+    ))
+)
+
 }
+

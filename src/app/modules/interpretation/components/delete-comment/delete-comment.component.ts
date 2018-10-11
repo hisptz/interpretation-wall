@@ -22,7 +22,7 @@ export class DeleteCommentComponent implements OnInit {
   deleteComment(e) {
     e.stopPropagation();
     this.deleting = true;
-    this.interpretationService.deleteComment(this.rootUrl, this.interpretationId, this.comment.id)
+    this.interpretationService.deleteComment(this.interpretationId, this.comment.id)
       .subscribe(() => this.onCommentDelete.emit(this.comment), () => {
         this.deleting = false;
         this.onCommentDeleteFail.emit(true);

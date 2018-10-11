@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgxDhis2HttpClientService } from '@hisptz/ngx-dhis2-http-client'
-
+import { Comment } from '../../../models/interpretation-comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,16 @@ import { NgxDhis2HttpClientService } from '@hisptz/ngx-dhis2-http-client'
 export class InterpretationService{
 
   constructor(private httpService: NgxDhis2HttpClientService) { }
+
+  getInterpretations(rootUrl) {
+    return new Observable(observer =>  {
+        this.httpService.get(`interpretations.json?fields=id,type,text,created,lastUpdated,likes,likedBy[id,name],user[id,name,displayName],comments[id,created,lastUpdated,text,user[id,name,displayName]],eventReport[*],eventChart[*],chart[*],map[id,name,mapViews[*]],reportTable[*]&paging=false`)
+        .subscribe((response:any) =>  {
+            observer.next(response.interpretations); 
+            observer.complete(); 
+        }, (error) => observer.error(error)); 
+      }); 
+    }
 
   getInterpretation(interpretation: any) {
     const interpretationUrl = 'interpretations/' + interpretation.id + '.json?fields=id,type,text,lastUpdated,href,' +
@@ -83,11 +93,24 @@ export class InterpretationService{
     });
   }
 
-  deleteComment(rootUrl: string, interpretationId: string, commentId: string) {
+  postInterpretationComment(interpretation: any, comment : Comment) {
+    return new Observable(observer => {
+      this.httpService.post('interpretations/' + interpretation.id + '/comments', comment)
+        .subscribe(() => {
+          this.getInterpretation(interpretation)
+            .subscribe((interpretationObject: any) => {
+              observer.next(interpretationObject);
+              observer.complete();
+            }, interpretationError => observer.error(interpretationError));
+        }, commentError => observer.error(commentError));
+    });
+  }
+
+  deleteComment(interpretationId: string, commentId: string) {
     return this.httpService.delete('interpretations/' + interpretationId + '/comments/' + commentId);
   }
 
-    editComment(rootUrl: string, interpretation: any, comment: any) {
+    editComment(interpretation: any, comment: Comment) {
     return new Observable(observer => {
       this.httpService.put('interpretations/' + interpretation.id + '/comments/' + comment.id, comment.text)
         .subscribe(() => {

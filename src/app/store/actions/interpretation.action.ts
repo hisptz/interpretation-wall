@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity'
 import { ErrorMessage } from '../../models/error-message.model';
 import { Interpretation } from '../../models/interpretation.model';
+import { Comment } from '../../models/interpretation-comment.model'
 
 export enum InterpretationActionTypes{
     LoadInterpretation = '[Interpretation] Load Interpretation',
@@ -90,7 +91,7 @@ export class LikeInterpretationFail implements Action{
 
 export class PostInterpretationComment implements Action{
     readonly type = InterpretationActionTypes.PostInterpretationComment;
-    constructor(public interpretationId: string ,public payload : any){}
+    constructor(public interpretationId: string ,public payload : Comment){}
 }
 
 export class PostInterpretationCommentSuccess implements Action{
@@ -106,7 +107,7 @@ export class PostInterpretationCommentFail implements Action{
 export class EditInterpretationComment implements Action{
     readonly type = InterpretationActionTypes.EditInterpretationComment;
     //needs both interpretationId and commentId
-    constructor(public interpretation : Interpretation, public comment : Comment, payload : any){}
+    constructor(public interpretation : Interpretation, public comment : Comment){}
 }
 
 export class EditInterpretationCommentSuccess implements Action {
@@ -121,12 +122,12 @@ export class EditInterpretationCommentFail implements Action {
 
 export class DeleteInterpretationComment implements Action {
     readonly type = InterpretationActionTypes.DeleteInterpretationComment;
-    constructor(public interpretationId : String, public commentId){}
+    constructor(public interpretation : Interpretation, public comment : Comment){}
 }
 
 export class DeleteInterpretationCommentSuccess implements Action{
     readonly type = InterpretationActionTypes.DeleteInterpretationCommentSuccess;
-    constructor(public payload : {id : string}){}
+    constructor(public payload : {interpretation : Update<Interpretation>}){}
 }
 
 export class DeleteInterpretationCommentFail implements Action{

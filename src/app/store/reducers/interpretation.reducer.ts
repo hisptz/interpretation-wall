@@ -223,7 +223,7 @@ export function interpretationReducer(
         }
 
         case InterpretationActionTypes.DeleteInterpretationCommentSuccess : 
-        return adapter.removeOne(action.payload.id, {
+        return adapter.updateOne(action.payload.interpretation, {
             ...state,
             deletingInterpretationComment : false,
             deletedInterpretationComment : true,
@@ -251,12 +251,18 @@ export const {
     selectAll: selectAllInterpretations
  } = adapter.getSelectors(); 
 
- export const getInterpretationLoadingState = (state : InterpretationState) => state. loadingInterpretation;
- export const getInterpretationLoadedState = (state : InterpretationState) => state. loadedInterpretation;
+ export const getInterpretationLoadingState = (state : InterpretationState) => state.loadingInterpretation;
+ export const getInterpretationLoadedState = (state : InterpretationState) => state.loadedInterpretation;
  export const getInterpretationErrorState = (state : InterpretationState) => state.error;
- export const getInterpretationDeletingState = (state : InterpretationState) => state. deletingInterpretation;
- export const getInterpretationDeletedState = (state : InterpretationState) => state. deletedInterpretation;
- export const getInterpretationEditingState = (state : InterpretationState) => state. editingInterpretation;
- export const getInterpretationEditedState = (state : InterpretationState) => state. editedInterpretation;
-
- 
+ export const getInterpretationDeletingState = (state : InterpretationState) => state.deletingInterpretation;
+ export const getInterpretationDeletedState = (state : InterpretationState) => state.deletedInterpretation;
+ export const getInterpretationEditingState = (state : InterpretationState) => state.editingInterpretation;
+ export const getInterpretationEditedState = (state : InterpretationState) => state.editedInterpretation;
+ export const getInterpretationLikedState = (state : InterpretationState) => state.likedInterpretation;
+ export const getInterpretationLikingState = (state : InterpretationState) => state.likingInterpretation;
+ export const getCommentPostingState = (state : InterpretationState) => state.postingInterpretationComment;
+ export const getCommentPostedState = (state : InterpretationState) => state.postedInterpretationComment;
+ export const getCommentEditingState = (state : InterpretationState) => state. editingInterpretationComment;
+ export const getCommentEditedState = (state : InterpretationState) => state. editedInterpretationComment;
+ export const getCommentDeletingState = (state : InterpretationState) => state. deletingInterpretationComment;
+ export const getCommentDeletedState = (state : InterpretationState) => state. deletedInterpretationComment;

@@ -28,7 +28,6 @@ export class EditCommentComponent implements OnInit {
     e.stopPropagation();
     this.creating = true;
     this.interpretationService.editComment(
-      this.rootUrl,
       this.interpretation,
       this.comment
     ).subscribe((interpretation) => this.onCommentEdit.emit(interpretation),
