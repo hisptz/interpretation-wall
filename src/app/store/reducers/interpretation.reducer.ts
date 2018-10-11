@@ -6,7 +6,6 @@ import {
 
 import { InterpretationAction, InterpretationActionTypes } from '../actions/interpretation.action';
 import { Interpretation } from '../../models/interpretation.model'
-import { InitialState } from '@ngrx/store/src/models';
 export interface InterpretationState extends EntityState<Interpretation>{
     loading: boolean;
     loaded: boolean;
@@ -74,10 +73,10 @@ export function interpretationReducer(
         };
 
         case InterpretationActionTypes.DeleteInterpretationSuccess: 
-        return adapter.removeOne(action.payload, {
+        return adapter.removeOne(action.payload.id, {
             ...state,
-            deleted : false,
-            deleting : true,
+            deleted : true,
+            deleting : false,
             error : null
         });
 
@@ -89,7 +88,7 @@ export function interpretationReducer(
             error : null
         };
 
-        case InterpretationActionTypes.DeleteInterpretationFail: 
+        case InterpretationActionTypes.EditInterpretationFail: 
         return{
             ...state,
             edited : false,
@@ -97,11 +96,11 @@ export function interpretationReducer(
             error : action.error
         };
 
-        case InterpretationActionTypes.DeleteInterpretationSuccess: 
-        return adapter.updateOne(action.payload, {
+        case InterpretationActionTypes.EditInterpretationSuccess: 
+        return adapter.updateOne(action.payload.interpretation, {
             ...state,
-            edited : false,
-            editing : true,
+            edited : true,
+            editing : false,
             error : null
         });
 
@@ -118,10 +117,10 @@ export const {
 
  export const getInterpretationLoadingState = (state : InterpretationState) => state. loading;
  export const getInterpretationLoadedState = (state : InterpretationState) => state. loaded;
- export const getINterpretationErrorState = (state : InterpretationState) => state.error;
- export const getInterpretationDeletingState = (state : InterpretationState) => state. loading;
- export const getInterpretationDeletedState = (state : InterpretationState) => state. loading;
- export const getInterpretationEditingState = (state : InterpretationState) => state. loading;
- export const getInterpretationEditedgState = (state : InterpretationState) => state. loading;
+ export const getInterpretationErrorState = (state : InterpretationState) => state.error;
+ export const getInterpretationDeletingState = (state : InterpretationState) => state. deleting;
+ export const getInterpretationDeletedState = (state : InterpretationState) => state. deleted;
+ export const getInterpretationEditingState = (state : InterpretationState) => state. editing;
+ export const getInterpretationEditedState = (state : InterpretationState) => state. edited;
 
  

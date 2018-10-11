@@ -34,7 +34,11 @@ export class HomeComponent implements OnInit {
 
   //for searching interpretations
   onInterpretationSearch(e){
-    let matchedInterpretationLimitCount = 5;
+    if(e){
+      e.stopPropagation();
+    }
+    //to Limit what to display
+    let matchedInterpretationLimitCount = 5; 
     let regExp = e.target.value.toLowerCase();
     let matchedInterpretation : Array<Interpretation> = [];
     

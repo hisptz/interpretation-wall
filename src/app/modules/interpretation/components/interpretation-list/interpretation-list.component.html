@@ -31,8 +31,8 @@
                     </a>
                 </div>
                 <div *ngIf="interpretation.deleting">Deleting interpretation</div>
-                <div class="interpretation-edit-input" *ngIf="interpretation.showEditForm">
-                    <app-edit-interpretation [interpretation]="interpretation" [rootUrl]="rootUrl" (onInterpretationEdit)="updateInterpretationText($event)"></app-edit-interpretation>
+                <div class="interpretation-edit-input" *ngIf="interpretation.showEditForm && !showCancelEditingForm">
+                    <app-edit-interpretation [interpretation]="interpretation" [rootUrl]="rootUrl" (onCancelInterpretationEdit)="updateInterpretationText(interpretation)" (onInterpretationEdit)="updateInterpretationText(interpretation)"></app-edit-interpretation>
                 </div>
                 <div class="interpretation-options">
                     <a class="interpretation-comment-btn" (click)="toggleCommentBlock(i, $event)">
@@ -49,7 +49,7 @@
                             [rootUrl]="rootUrl"></app-interpretation-comment>
                     </div>
                     <div class="interpretation-comment-input-area">
-                        <app-interpretation-comment [showCommentInput]="true" [currentUser]="currentUser" [interpretation]="interpretation" [rootUrl]="rootUrl" (onCommentCreated)="updateInterpretationComment($event)"></app-interpretation-comment>
+                        <app-interpretation-comment [showCommentInput]="true" [currentUser]="currentUser" [interpretation]="interpretation" [rootUrl]="rootUrl" (onCommentCreated)="updateInterpretationComment($event)" appAutosize></app-interpretation-comment>
                     </div>
                 </div>
             </div>
