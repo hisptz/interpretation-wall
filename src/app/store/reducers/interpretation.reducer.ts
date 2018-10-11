@@ -7,24 +7,39 @@ import {
 import { InterpretationAction, InterpretationActionTypes } from '../actions/interpretation.action';
 import { Interpretation } from '../../models/interpretation.model'
 export interface InterpretationState extends EntityState<Interpretation>{
-    loading: boolean;
-    loaded: boolean;
+    loadingInterpretation: boolean;
+    loadedInterpretation: boolean;
+    hasError : boolean;
     error: any;
-    deleting : boolean;
-    deleted : boolean;
-    editing: boolean;
-    edited : boolean;
+    deletingInterpretation : boolean;
+    deletedInterpretation : boolean;
+    editingInterpretation: boolean;
+    editedInterpretation : boolean;
+    likingInterpretation : boolean;
+    likedInterpretation : boolean;
+    deletingInterpretationComment : boolean;
+    deletedInterpretationComment : boolean;
+    editingInterpretationComment : boolean;
+    editedInterpretationComment : boolean;
 }
 export const adapter : EntityAdapter<Interpretation> = createEntityAdapter<Interpretation>();
 
 export const initialState: InterpretationState = adapter.getInitialState({
-    loaded: false,
-    loading: false,
+    loadedInterpretation: false,
+    loadingInterpretation: false,
+    hasError : false,
     error: null,
-    deleting : false,
-    deleted : false,
-    editing: false,
-    edited : false
+    deletingInterpretation : false,
+    deletedInterpretation : false,
+    editingInterpretation: false,
+    editedInterpretation : false,
+    likingInterpretation : false,
+    likedInterpretation : false,
+    deletingInterpretationComment : false,
+    deletedInterpretationComment : false,
+    editingInterpretationComment : false,
+    editedInterpretationComment : false    
+
 })
 
 export function interpretationReducer(
@@ -35,72 +50,81 @@ export function interpretationReducer(
         case InterpretationActionTypes.LoadInterpretation: 
         return {
             ...state,
-            loading: true,
-            loaded: false,
+            loadingInterpretation: true,
+            loadedInterpretation: false,
+            hasError : false,
             error: null,
         };
 
         case InterpretationActionTypes.LoadInterpretationFail: 
         return {
             ...state,
-            loading: false,
-            loaded: false,
+            loadingInterpretation: false,
+            loadedInterpretation: false,
+            hasError : true,
             error: action.error
         }
 
         case InterpretationActionTypes.LoadInterpretationSuccess: 
         return adapter.addAll(action.payload, {
             ...state,
-            loading: false,
-            loaded: true,
+            loadingInterpretation: false,
+            loadedInterpretation: true,
+            hasError : false,
             error: null
         });
 
         case  InterpretationActionTypes.DeleteInterpretation: 
         return{
             ...state,
-            deleted : false,
-            deleting : true,
+            deletedInterpretation : false,
+            deletingInterpretation : true,
+            hasError : false,
             error : null
         };
 
         case InterpretationActionTypes.DeleteInterpretationFail: 
         return{
             ...state,
-            deleted : false,
-            deleting : false,
+            deletedInterpretation : false,
+            deletingInterpretation : false,
+            hasError : true,
             error : action.error
         };
 
         case InterpretationActionTypes.DeleteInterpretationSuccess: 
         return adapter.removeOne(action.payload.id, {
             ...state,
-            deleted : true,
-            deleting : false,
+            deletedInterpretation : true,
+            deletingInterpretation : false,
+            hasError : false,
             error : null
         });
 
         case  InterpretationActionTypes.EditInterpretation: 
         return{
             ...state,
-            edited : false,
-            editing : true,
+            editedInterpretation : false,
+            editingInterpretation : true,
+            hasError : false,
             error : null
         };
 
         case InterpretationActionTypes.EditInterpretationFail: 
         return{
             ...state,
-            edited : false,
-            editing : false,
+            editedInterpretation : false,
+            editingInterpretation : false,
+            hasError : true,
             error : action.error
         };
 
         case InterpretationActionTypes.EditInterpretationSuccess: 
         return adapter.updateOne(action.payload.interpretation, {
             ...state,
-            edited : true,
-            editing : false,
+            editedInterpretation : true,
+            editingInterpretation : false,
+            harError : false,
             error : null
         });
 
@@ -115,12 +139,12 @@ export const {
     selectAll: selectAllInterpretations
  } = adapter.getSelectors(); 
 
- export const getInterpretationLoadingState = (state : InterpretationState) => state. loading;
- export const getInterpretationLoadedState = (state : InterpretationState) => state. loaded;
+ export const getInterpretationLoadingState = (state : InterpretationState) => state. loadingInterpretation;
+ export const getInterpretationLoadedState = (state : InterpretationState) => state. loadedInterpretation;
  export const getInterpretationErrorState = (state : InterpretationState) => state.error;
- export const getInterpretationDeletingState = (state : InterpretationState) => state. deleting;
- export const getInterpretationDeletedState = (state : InterpretationState) => state. deleted;
- export const getInterpretationEditingState = (state : InterpretationState) => state. editing;
- export const getInterpretationEditedState = (state : InterpretationState) => state. edited;
+ export const getInterpretationDeletingState = (state : InterpretationState) => state. deletingInterpretation;
+ export const getInterpretationDeletedState = (state : InterpretationState) => state. deletedInterpretation;
+ export const getInterpretationEditingState = (state : InterpretationState) => state. editingInterpretation;
+ export const getInterpretationEditedState = (state : InterpretationState) => state. editedInterpretation;
 
  

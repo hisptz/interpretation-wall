@@ -6,13 +6,26 @@ import { Interpretation } from '../../models/interpretation.model';
 export enum InterpretationActionTypes{
     LoadInterpretation = '[Interpretation] Load Interpretation',
     LoadInterpretationSuccess = '[Interpretation] Load Interpretation success',
-    LoadInterpretationFail = '[Interpretation] Load Interpretation Fail',
-    DeleteInterpretation = '[Interpretation] Add interpretation',
+    LoadInterpretationFail = '[Interpretation] Load Interpretation fail',
     EditInterpretation = '[Interpretation] Edit Interpretation',
-    DeleteInterpretationFail = '[Interpretation] Delete interpretation Fail',
-    EditInterpretationFail = '[Interpretation] Edit Interpretation Fail',
-    DeleteInterpretationSuccess = '[Interpretation] Delete interpretationSuccess',
-    EditInterpretationSuccess = '[Interpretation] Edit Interpretation Success',
+    EditInterpretationSuccess = '[Interpretation] Edit Interpretation success',
+    EditInterpretationFail = '[Interpretation] Edit Interpretation fail',
+    DeleteInterpretation = '[Interpretation] Add interpretation',   
+    DeleteInterpretationSuccess = '[Interpretation] Delete success',
+    DeleteInterpretationFail = '[Interpretation] Delete interpretation fail',
+    LikeInterpretation = '[Interpretation] Like interpretation',
+    LikeInterpretationSuccess = '[Interpretation] Like interpretation success',
+    LikeInterprettaionFail = '[Interpretation] Like interpretation fail',
+    PostInterpretationComment = '[Comment] Post comment',
+    PostInterpretationCommentSuccess = '[Comment] Post comment success',
+    PostInterpretationCommentFail = '[Comment] Post comment fail',
+    EditInterpretationComment = '[Comment] Edit comment',
+    EditInterpretationCommentSuccess = '[Comment] Edit comment success',
+    EditInterpretationCommentFail = '[Comment] Edit comment fail',
+    DeleteInterpretationComment = '[Comment] Delete comment',
+    DeleteInterpretationCommentSuccess = '[Comment] Delete comment success',
+    DeleteInterpretationCommentFail ='[Comment] Delete comment fail'
+
 }
  
 export class LoadInterpretation implements Action{
@@ -60,13 +73,86 @@ export class EditInterpretationSuccess implements Action{
     constructor(public payload : {interpretation : Update<Interpretation>}){}
 }
 
+export class LikeInterpretation implements Action{
+    readonly type = InterpretationActionTypes.LikeInterpretation;
+    constructor(public intepretationId : string){}
+}
+
+export class LikeInterpretationSuccess implements Action{
+    readonly type = InterpretationActionTypes.LikeInterpretationSuccess;
+    constructor(public payload : {interpretation : Update<Interpretation>}){}
+}
+
+export class LikeInterpretationFail implements Action{
+    readonly type = InterpretationActionTypes.LikeInterprettaionFail;
+    constructor(public error : ErrorMessage){}
+}
+
+export class PostInterpretationComment implements Action{
+    readonly type = InterpretationActionTypes.PostInterpretationComment;
+    constructor(public interpretationId: string ,public payload : any){}
+}
+
+export class PostInterpretationCommentSuccess implements Action{
+    readonly type = InterpretationActionTypes.PostInterpretationCommentSuccess;
+    constructor(public payload : {interpretation : Update<Interpretation>}){}
+}
+
+export class PostInterpretationCommentFail implements Action{
+    readonly type = InterpretationActionTypes.PostInterpretationCommentFail;
+    constructor(public error: ErrorMessage){}
+}
+
+export class EditInterpretationComment implements Action{
+    readonly type = InterpretationActionTypes.EditInterpretationComment;
+    //needs both interpretationId and commentId
+    constructor(public interpretation : Interpretation, public comment : Comment, payload : any){}
+}
+
+export class EditInterpretationCommentSuccess implements Action {
+    readonly type = InterpretationActionTypes.EditInterpretationCommentSuccess;
+    constructor(public payload : {interpretation : Update<Interpretation>}){}
+}
+
+export class EditInterpretationCommentFail implements Action {
+    readonly type = InterpretationActionTypes.EditInterpretationCommentFail;
+    constructor(public error : ErrorMessage){}
+}
+
+export class DeleteInterpretationComment implements Action {
+    readonly type = InterpretationActionTypes.DeleteInterpretationComment;
+    constructor(public interpretationId : String, public commentId){}
+}
+
+export class DeleteInterpretationCommentSuccess implements Action{
+    readonly type = InterpretationActionTypes.DeleteInterpretationCommentSuccess;
+    constructor(public payload : {interpretation : Update<Interpretation>}){}
+}
+
+export class DeleteInterpretationCommentFail implements Action{
+    readonly type = InterpretationActionTypes.DeleteInterpretationCommentFail;
+    constructor(public error : ErrorMessage){}
+}
+
 export type InterpretationAction =  
-| LoadInterpretation 
+  LoadInterpretation 
 | LoadInterpreationFail 
 | LoadInterpretationSuccess 
-| DeleteInterpretation 
-| EditInterpretation 
+| DeleteInterpretation
+| DeleteInterpretationSuccess 
 | DeleteInterpretationFail 
+| EditInterpretation 
 | EditInterpretationFail
-| DeleteInterpretationSuccess
-| EditInterpretationSuccess ;
+| EditInterpretationSuccess 
+| LikeInterpretation
+| LikeInterpretationSuccess
+| LikeInterpretationFail
+| PostInterpretationComment
+| PostInterpretationCommentSuccess
+| PostInterpretationCommentFail
+| EditInterpretationComment
+| EditInterpretationCommentSuccess
+| EditInterpretationCommentFail
+| DeleteInterpretationComment
+| DeleteInterpretationCommentSuccess
+| DeleteInterpretationCommentFail
