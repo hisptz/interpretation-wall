@@ -6,7 +6,6 @@ import {
 
 import { InterpretationAction, InterpretationActionTypes } from '../actions/interpretation.action';
 import { Interpretation } from '../../models/interpretation.model'
-import { InitialState } from '@ngrx/store/src/models';
 export interface InterpretationState extends EntityState<Interpretation>{
     loading: boolean;
     loaded: boolean;
@@ -118,10 +117,10 @@ export const {
 
  export const getInterpretationLoadingState = (state : InterpretationState) => state. loading;
  export const getInterpretationLoadedState = (state : InterpretationState) => state. loaded;
- export const getINterpretationErrorState = (state : InterpretationState) => state.error;
- export const getInterpretationDeletingState = (state : InterpretationState) => state. loading;
- export const getInterpretationDeletedState = (state : InterpretationState) => state. loading;
- export const getInterpretationEditingState = (state : InterpretationState) => state. loading;
- export const getInterpretationEditedState = (state : InterpretationState) => state. loading;
+ export const getInterpretationErrorState = (state : InterpretationState) => state.error;
+ export const getInterpretationDeletingState = (state : InterpretationState) => state. deleting;
+ export const getInterpretationDeletedState = (state : InterpretationState) => state. deleted;
+ export const getInterpretationEditingState = (state : InterpretationState) => state. editing;
+ export const getInterpretationEditedState = (state : InterpretationState) => state. edited;
 
  

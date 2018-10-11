@@ -14,6 +14,10 @@ export const getInterpretationState = createSelector(
 export const getAllInterpretations = createSelector(getInterpretationState, fromInterpretation.selectAllInterpretations);
 
 export const getInterpretationLoadedStatus =  createSelector(getInterpretationState, fromInterpretation.getInterpretationLoadedState);
+export const getInterpretationEditingStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationEditingState);
+export const getInterpretationEditedStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationEditedState);
+export const getInterpretationDeletingtingStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationDeletingState);
+export const getInterpretationDeletedtingStatus = createSelector(getInterpretationState, fromInterpretation.getInterpretationDeletedState);
 
 export const getAllComments = createSelector(
     getAllInterpretations,

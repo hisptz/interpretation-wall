@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import {InterpretationService} from '../../services/interpretation.service';
 import { Store } from '@ngrx/store';
-import { State, EditInterpretation, DeleteInterpretation } from '../../../../store';
+import { State, DeleteInterpretation } from '../../../../store';
 
 @Component({
   selector: 'app-interpretation-list',
@@ -18,9 +18,7 @@ export class InterpretationListComponent implements OnInit {
   @Output() onInterpretationUpdate: EventEmitter<any> = new EventEmitter<any>();
   @Input() visualizationTypeObject: any;
   interpretationTerm: string;
-
   
-
   constructor(private interpretationService: InterpretationService, private store : Store<State>) {
    }
 

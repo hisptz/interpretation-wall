@@ -36,19 +36,19 @@ export class InterpretationService{
   }
   
     edit(interpretation: any) {
-    // return new Observable(observer => {
-    //   this.httpService.put( '/interpretations/' + interpretation.id, interpretation.text)
-    //     .subscribe(() => {
-    //       this.getInterpretation(interpretation)
-    //         .subscribe((interpretationObject: any) => {
-    //           console.log(interpretationObject)
-    //           observer.next(interpretationObject);
-    //           observer.complete();
-    //         }, interpretationError => observer.error(interpretationError));
-    //     }, error => observer.error(error));
-    // });
+    return new Observable(observer => {
+      this.httpService.put( '/interpretations/' + interpretation.id, interpretation.text)
+        .subscribe(() => {
+          this.getInterpretation(interpretation)
+            .subscribe((interpretationObject: any) => {
+              console.log(interpretationObject)
+              observer.next(interpretationObject);
+              observer.complete();
+            }, interpretationError => observer.error(interpretationError));
+        }, error => observer.error(error));
+    });
 
-    return this.httpService.put( '/interpretations/' + interpretation.id, interpretation.text)
+    //return this.httpService.put( '/interpretations/' + interpretation.id, interpretation.text)
   }  
   
     delete(interpretation: any) {

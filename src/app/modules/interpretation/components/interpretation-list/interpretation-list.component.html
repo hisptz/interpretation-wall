@@ -31,8 +31,8 @@
                     </a>
                 </div>
                 <div *ngIf="interpretation.deleting">Deleting interpretation</div>
-                <div class="interpretation-edit-input" *ngIf="interpretation.showEditForm">
-                    <app-edit-interpretation [interpretation]="interpretation" [rootUrl]="rootUrl" (onInterpretationEdit)="updateInterpretationText($event)"></app-edit-interpretation>
+                <div class="interpretation-edit-input" *ngIf="interpretation.showEditForm && !showCancelEditingForm">
+                    <app-edit-interpretation [interpretation]="interpretation" [rootUrl]="rootUrl" (onCancelInterpretationEdit)="updateInterpretationText(interpretation)" (onInterpretationEdit)="updateInterpretationText(interpretation)"></app-edit-interpretation>
                 </div>
                 <div class="interpretation-options">
                     <a class="interpretation-comment-btn" (click)="toggleCommentBlock(i, $event)">
