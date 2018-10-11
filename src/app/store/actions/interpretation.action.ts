@@ -65,7 +65,7 @@ export class EditInterpretationFail implements Action{
 
 export class DeleteInterpretationSuccess implements Action{
     readonly type = InterpretationActionTypes.DeleteInterpretationSuccess;
-    constructor(public payload : any){}
+    constructor(public payload : {id : string}){}
 }
 
 export class EditInterpretationSuccess implements Action{
@@ -126,7 +126,7 @@ export class DeleteInterpretationComment implements Action {
 
 export class DeleteInterpretationCommentSuccess implements Action{
     readonly type = InterpretationActionTypes.DeleteInterpretationCommentSuccess;
-    constructor(public payload : {interpretation : Update<Interpretation>}){}
+    constructor(public payload : {id : string}){}
 }
 
 export class DeleteInterpretationCommentFail implements Action{

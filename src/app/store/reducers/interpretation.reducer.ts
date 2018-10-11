@@ -17,6 +17,8 @@ export interface InterpretationState extends EntityState<Interpretation>{
     editedInterpretation : boolean;
     likingInterpretation : boolean;
     likedInterpretation : boolean;
+    postingInterpretationComment : boolean,
+    postedInterpretationComment : boolean,
     deletingInterpretationComment : boolean;
     deletedInterpretationComment : boolean;
     editingInterpretationComment : boolean;
@@ -35,6 +37,8 @@ export const initialState: InterpretationState = adapter.getInitialState({
     editedInterpretation : false,
     likingInterpretation : false,
     likedInterpretation : false,
+    postingInterpretationComment : false,
+    postedInterpretationComment : false,
     deletingInterpretationComment : false,
     deletedInterpretationComment : false,
     editingInterpretationComment : false,
@@ -127,6 +131,114 @@ export function interpretationReducer(
             harError : false,
             error : null
         });
+
+        case InterpretationActionTypes.LikeInterpretation: 
+        return {
+            ...state,
+            likedInterpretation : false,
+            likingInterpretation : true,
+            hasError : false,
+            error : null
+        }
+
+        case InterpretationActionTypes.LikeInterpretationSuccess : 
+        return adapter.updateOne( action.payload.interpretation, {
+            ...state,
+            likedInterpretation : true,
+            likingInterpretation : false,
+            hasError : false,
+            error : null
+        })
+
+        case InterpretationActionTypes.LikeInterprettaionFail : 
+        return {
+            ...state,
+            likedInterpretation : false,
+            likingInterpretation : false,
+            hasError : true,
+            error : action.error
+        }
+
+        case InterpretationActionTypes.PostInterpretationComment: 
+        return {
+            ...state,
+            postedInterpretationComment : false,
+            postingInterpretationComment : true,
+            hasError : false,
+            error : null
+        }
+
+        case InterpretationActionTypes.PostInterpretationCommentSuccess:
+        return adapter.updateOne(action.payload.interpretation, {
+            ...state,
+            postedInterpretationComment : true,
+            postingInterpretationComment : false,
+            hasError : false,
+            error : null
+        })
+
+        case InterpretationActionTypes.PostInterpretationCommentFail :
+        return {
+            ...state,
+            postedInterpretationComment : false,
+            postingInterpretationComment : false,
+            hasError : true,
+            error : action.error
+        }
+
+        case InterpretationActionTypes.EditInterpretationComment: 
+        return {
+            ...state,
+            editingInterpretationComment : true,
+            editedInterpretationComment : false,
+            harError : false,
+            error : null
+        }
+
+        case InterpretationActionTypes.EditInterpretationCommentSuccess: 
+        return adapter.updateOne(action.payload.interpretation, {
+            ...state,
+            editingInterpretation : false,
+            editedInterpretation : true,
+            hasError : false,
+            error : null
+        })
+
+        case InterpretationActionTypes.EditInterpretationCommentFail: 
+        return {
+            ...state,
+            editingInterpretation : false,
+            editedInterpretation : false,
+            hasError : true,
+            error : action.error
+        }
+
+        case InterpretationActionTypes.DeleteInterpretationComment : 
+        return {
+            ...state,
+            deletingInterpretationComment : true,
+            deletedInterpretationComment : false,
+            hasError : false,
+            errorr : null
+        }
+
+        case InterpretationActionTypes.DeleteInterpretationCommentSuccess : 
+        return adapter.removeOne(action.payload.id, {
+            ...state,
+            deletingInterpretationComment : false,
+            deletedInterpretationComment : true,
+            hasError : false,
+            errorr : null
+        })
+
+        case InterpretationActionTypes.DeleteInterpretationCommentFail : 
+        return {
+            ...state,
+            deletingInterpretationComment : false,
+            deletedInterpretationComment : false,
+            hasError : true,
+            errorr : action.error
+        }
 
         default: return state
     }
